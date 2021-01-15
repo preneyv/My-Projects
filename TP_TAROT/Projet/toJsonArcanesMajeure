@@ -1,0 +1,163 @@
+[
+  {
+    "sortOf":"",
+    "element":"",
+    "number":"",
+    "picture":"",
+    "name":"Choisissez..."
+  },
+  {
+  "sortOf":"Androgyne",
+  "element":"Feu",
+  "number":"1",
+  "picture":"bateleur.jpg",
+  "name":"Le bateleur"
+  },
+  {
+  "sortOf":"Féminin",
+  "element":"Eau",
+  "number":"2",
+  "picture":"papesse.jpg",
+  "name":"La papesse"
+  },
+  {
+    "sortOf":"Féminin",
+    "element":"Terre",
+    "number":"3",
+    "picture":"imperatrice.jpg",
+    "name":"L'impératrice"
+  },
+  {
+    "sortOf":"Masculin",
+    "element":"Terre",
+    "number":"4",
+    "picture":"empereur.jpg",
+    "name":"L'empereur"
+  },
+  {
+    "sortOf":"Masculin",
+    "element":"Air",
+    "number":"5",
+    "picture":"pape.jpg",
+    "name":"Le pape"
+  },
+  {
+    "sortOf":"Neutre",
+    "element":"Air",
+    "number":"6",
+    "picture":"amoureux.jpg",
+    "name":"L'amoureux"
+  },
+  {
+    "sortOf":"Neutre",
+    "element":"Feu",
+    "number":"7",
+    "picture":"chariot.jpg",
+    "name":"Le chariot"
+  },
+  {
+    "sortOf":"Neutre",
+    "element":"Air",
+    "number":"8",
+    "picture":"justice.jpg",
+    "name":"La justice"
+  },
+  {
+    "sortOf":"Masculin",
+    "element":"Air",
+    "number":"9",
+    "picture":"hermite.jpg",
+    "name":"L'hermite"
+  },
+  {
+    "sortOf":"Neutre",
+    "element":"Feu",
+    "number":"10",
+    "picture":"roueFortune.jpg",
+    "name":"La roue de Fortune"
+  },
+  {
+    "sortOf":"Féminin",
+    "element":"Terre",
+    "number":"11",
+    "picture":"force.jpg",
+    "name":"La force"
+  },
+  {
+    "sortOf":"Neutre",
+    "element":"Air",
+    "number":"12",
+    "picture":"pendu.jpg",
+    "name":"Le pendu"
+  },
+  {
+    "sortOf":"Androgyne",
+    "element":"Feu",
+    "number":"13",
+    "picture":"sansNom.jpg",
+    "name":"L'arcane sans Nom"
+  },
+  {
+    "sortOf":"Neutre",
+    "element":"Eau",
+    "number":"14",
+    "picture":"temperance.jpg",
+    "name":"La temperance"
+  },
+  {
+    "sortOf":"Neutre",
+    "element":"Terre",
+    "number":"15",
+    "picture":"diable.jpg",
+    "name":"Le diable"
+  },
+  {
+    "sortOf":"Neutre",
+    "element":"Feu",
+    "number":"16",
+    "picture":"maisonDieu.jpg",
+    "name":"La maison de Dieu"
+  },
+  {
+    "sortOf":"Féminin",
+    "element":"Air",
+    "number":"17",
+    "picture":"etoile.jpg",
+    "name":"L'étoile"
+  },
+  {
+    "sortOf":"Féminin",
+    "element":"Eau",
+    "number":"18",
+    "picture":"lune.jpg",
+    "name":"La lune"
+  },
+  {
+    "sortOf":"Masculin",
+    "element":"Feu",
+    "number":"19",
+    "picture":"soleil.jpg",
+    "name":"Le soleil"
+  },
+  {
+    "sortOf":"Neutre",
+    "element":"Eau",
+    "number":"20",
+    "picture":"jugement.jpg",
+    "name":"Le jugement"
+  },
+  {
+    "sortOf":"Neutre",
+    "element":"Tous",
+    "number":"21",
+    "picture":"monde.jpg",
+    "name":"Le monde"
+  },
+  {
+    "sortOf":"Neutre",
+    "element":"Aucun",
+    "number":"",
+    "picture":"fou.jpg",
+    "name":"Le fou"
+  }
+]

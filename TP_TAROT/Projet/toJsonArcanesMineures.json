@@ -1,0 +1,340 @@
+[
+
+  {
+    "dom":"Coupes",
+    "picture":"asCoupe.jpg",
+    "number" : "As",
+    "name" : "As de Coupes"
+  },
+  {
+    "dom":"Coupes",
+    "picture":"deuxCoupe.jpg",
+    "number" : "2",
+    "name" : "Deux de Coupes"
+  },
+  {
+    "dom":"Coupes",
+    "picture":"troisCoupe.jpg",
+    "number" : "3",
+    "name" : "Trois de Coupes"
+  },
+  {
+    "dom":"Coupes",
+    "picture":"quatreCoupe.jpg",
+    "number" : "4",
+    "name" : "Quatre de Coupes"
+  },
+  {
+    "dom":"Coupes",
+    "picture":"cinqCoupe.jpg",
+    "number" : "5",
+    "name" : "Cinq de Coupes"
+  },
+  {
+    "dom":"Coupes",
+    "picture":"sixCoupe.jpg",
+    "number" : "6",
+    "name" : "Six de Coupes"
+  },
+  {
+    "dom":"Coupes",
+    "picture":"septCoupe.jpg",
+    "number" : "7",
+    "name" : "Sept de Coupes"
+  },
+  {
+    "dom":"Coupes",
+    "picture":"huitCoupe.jpg",
+    "number" : "8",
+    "name" : "Huit de Coupes"
+  },
+  {
+    "dom":"Coupes",
+    "picture":"neufCoupe.jpg",
+    "number" : "9",
+    "name" : "Neuf de Coupes"
+  },
+  {
+    "dom":"Coupes",
+    "picture":"dixCoupe.jpg",
+    "number" : "10",
+    "name" : "Dix de Coupes"
+  },
+  {
+    "dom":"Coupes",
+    "picture":"valetCoupe.jpg",
+    "number" : "Valet",
+    "name" : "Valet de Coupes"
+  },
+  {
+    "dom":"Coupes",
+    "picture":"cavalierCoupe.jpg",
+    "number" : "Cavalier",
+    "name" : "Cavalier de Coupes"
+  },
+  {
+    "dom":"Coupes",
+    "picture":"reineCoupe.jpg",
+    "number" : "Reine",
+    "name" : "Reine de Coupes"
+  },
+  {
+    "dom":"Coupes",
+    "picture":"roiCoupe.jpg",
+    "number" : "Roi",
+    "name" : "Roi de Coupes"
+  },
+  {
+    "dom":"Batons",
+    "picture":"asBaton.jpg",
+    "number" : "As",
+    "name" : "As de Batons"
+  },
+  {
+    "dom":"Batons",
+    "picture":"deuxBaton.jpg",
+    "number" : "2",
+    "name" : "Deux de Batons"
+  },
+  {
+    "dom":"Batons",
+    "picture":"troisBaton.jpg",
+    "number" : "3",
+    "name" : "Trois de Batons"
+  },
+  {
+    "dom":"Batons",
+    "picture":"quatreBaton.jpg",
+    "number" : "4",
+    "name" : "Quatre de Batons"
+  },
+  {
+    "dom":"Batons",
+    "picture":"cinqBaton.jpg",
+    "number" : "5",
+    "name" : "Cinq de Batons"
+  },
+  {
+    "dom":"Batons",
+    "picture":"sixBaton.jpg",
+    "number" : "6",
+    "name" : "Six de Batons"
+  },
+  {
+    "dom":"Batons",
+    "picture":"septBaton.jpg",
+    "number" : "7",
+    "name" : "Sept de Batons"
+  },
+  {
+    "dom":"Batons",
+    "picture":"huitBaton.jpg",
+    "number" : "8",
+    "name" : "Huit de Batons"
+  },
+  {
+    "dom":"Batons",
+    "picture":"neufBaton.jpg",
+    "number" : "9",
+    "name" : "Neuf de Batons"
+  },
+  {
+    "dom":"Batons",
+    "picture":"dixBaton.jpg",
+    "number" : "10",
+    "name" : "Dix de Batons"
+  },
+  {
+    "dom":"Batons",
+    "picture":"valetBaton.jpg",
+    "number" : "Valet",
+    "name" : "Valet de Batons"
+  },
+  {
+    "dom":"Batons",
+    "picture":"cavalierBaton.jpg",
+    "number" : "Cavalier",
+    "name" :"Cavalier de Batons"
+  },
+  {
+    "dom":"Batons",
+    "picture":"reineBaton.jpg",
+    "number" : "Reine",
+    "name" :"Reine de Batons"
+  },
+  {
+    "dom":"Batons",
+    "picture":"roiBaton.jpg",
+    "number" : "Roi",
+    "name" :  "Roi de Batons"
+  },
+  {
+    "dom":"Deniers",
+    "picture":"asDenier.jpg",
+    "number" : "As",
+    "name" : "As Deniers"
+  },
+  {
+    "dom":"Deniers",
+    "picture":"deuxDenier.jpg",
+    "number" : "2",
+    "name" : "Deux Deniers"
+  },
+  {
+    "dom":"Deniers",
+    "picture":"troisDenier.jpg",
+    "number" : "3",
+    "name" : "Trois Deniers"
+  },
+  {
+    "dom":"Deniers",
+    "picture":"quatreDenier.jpg",
+    "number" : "4",
+    "name" : "Quatre Deniers"
+  },
+  {
+    "dom":"Deniers",
+    "picture":"cinqDenier.jpg",
+    "number" : "5",
+    "name" : "Cinq Deniers"
+  },
+  {
+    "dom":"Deniers",
+    "picture":"sixDenier.jpg",
+    "number" : "6",
+    "name" : "Six Deniers"
+  },
+  {
+    "dom":"Deniers",
+    "picture":"septDenier.jpg",
+    "number" : "7",
+    "name" : "Sept Deniers"
+  },
+  {
+    "dom":"Deniers",
+    "picture":"huitDenier.jpg",
+    "number" : "8",
+    "name" : "Huit Deniers"
+  },
+  {
+    "dom":"Deniers",
+    "picture":"neufDenier.jpg",
+    "number" : "9",
+    "name" : "Neuf Deniers"
+  },
+  {
+    "dom":"Deniers",
+    "picture":"dixDenier.jpg",
+    "number" : "10",
+    "name" : "Dix Deniers"
+  },
+  {
+    "dom":"Deniers",
+    "picture":"valetDenier.jpg",
+    "number" : "Valet",
+    "name" : "Valet Deniers"
+  },
+  {
+    "dom":"Deniers",
+    "picture":"cavalierDenier.jpg",
+    "number" : "Cavalier",
+    "name" : "Cavalier Deniers"
+  },
+  {
+    "dom":"Deniers",
+    "picture":"reineDenier.jpg",
+    "number" : "Reine",
+    "name" : "Reine Deniers"
+  },
+  {
+    "dom":"Deniers",
+    "picture":"roiDenier.jpg",
+    "number" : "Roi",
+    "name" : "Roi Deniers"
+  },
+  {
+    "dom":"Epées",
+    "picture":"asEpees.jpg",
+    "number" :"As",
+    "name" : "As d'Epées"
+  },
+  {
+    "dom":"Epées",
+    "picture":"deuxEpees.jpg",
+    "number" : "2",
+    "name" : "Deux d'Epées"
+  },
+  {
+    "dom":"Epées",
+    "picture":"troisEpees.jpg",
+    "number" : "3",
+    "name" : "Trois d'Epées"
+  },
+  {
+    "dom":"Epées",
+    "picture":"quatreEpees.jpg",
+    "number" : "4",
+    "name" : "Quatre d'Epées"
+  },
+  {
+    "dom":"Epées",
+    "picture":"cinqEpees.jpg",
+    "number" :"5",
+    "name" : "Cinq d'Epées"
+  },
+  {
+    "dom":"Epées",
+    "picture":"sixEpees.jpg",
+    "number" : "6",
+    "name" : "Six d'Epées"
+  },
+  {
+    "dom":"Epées",
+    "picture":"septEpees.jpg",
+    "number" : "7",
+    "name" : "Sept d'Epées"
+  },
+  {
+    "dom":"Epées",
+    "picture":"huitEpees.jpg",
+    "number" : "8",
+    "name" : "Huit d'Epées"
+  },
+  {
+    "dom":"Epées",
+    "picture":"neufEpees.jpg",
+    "number" : "9",
+    "name" : "Neuf d'Epées"
+  },
+  {
+    "dom":"Epées",
+    "picture":"dixEpees.jpg",
+    "number" : "10",
+    "name" : "Dix d'Epées"
+  },
+  {
+    "dom":"Epées",
+    "picture":"valetEpees.jpg",
+    "name": "Valet d'Epées",
+    "number" :"Valet",
+    "name" : "Valet d'Epées"
+  },
+  {
+    "dom":"Epées",
+    "picture":"cavalierEpees.jpg",
+    "number" :"Cavalier",
+    "name" : "Cavalier d'Epées"
+  },
+  {
+    "dom":"Epées",
+    "picture":"reineEpees.jpg",
+    "number" : "Reine",
+    "name" :"Reine d'Epées"
+  },
+  {
+    "dom":"Epées",
+    "picture":"roiEpees.jpg",
+    "number" : "Roi",
+    "name" : "Roi d'Epées"
+  }
+]
