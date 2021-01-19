@@ -1,0 +1,247 @@
+
+                            PROJET GALERIE - MONGO PHP
+                        Par PRENEY Valère et DIMITROV Joaquim
+
+
+Fonctionnalité développées :
+ - Créer un compte & se connecter/déconnecter (gestion des erreurs, password encrypté, etc.);
+ - Parcourir ses photos par thèmes et galeries (sans être connecté);
+ - Ajouter des themes, des galeries aux themes et des images aux galeries (en étant connecté);
+ - Nommer les themes et les galerie créés (voir objets dans base de donnée);
+ - Requetes Mongo/PhP (voir plus bas);
+ - Afficher le nombre d'images par thème;
+ - Afficher le nombre d'images de chaque galeries; <-(non finalisé)
+ - Dans le carroussel des galeries afficher en fond la première image sur chaque galerie;
+ - Afficher en plus grand une image choisie;
+ - etc.
+
+ - Impossibilité de créer deux fois un theme qui à le même nom.
+ - Impossibilité de créer deux fois une galerie avec un nom identqiue dans un même theme.
+ - Impossibilité de créer deux fois le même compte (même email)
+
+Fonctionnalités non développées et problèmes à revoir (TODO):
+ - Les images des galeries, les galeries ainsi que les themes ne peuvent pas être supprimés une fois créés.
+ - Les utilisateurs ne peuvent pas encore upload leur propres images.
+ - Feature : avoir des galeries privées aux utilisateurs en plus des galeries publiques.
+
+
+--------------STRUCTURE DU PROJET
+
+Le projet est construit selon le design pattern MVC.
+L'arborescence est donc la suivante : 
+
+    > views
+        >logUp.php
+        >logIn.php
+        >galleries.php
+        >listFunctions.js
+        >modules
+            >freeImagesList.js
+            >galleryList.js
+            >imagesOfGalleryList.js
+            >themeList.js
+        >style
+            >home.css
+            >galleries.css
+
+    >controllers
+        >controller.php
+        >gallerieController.php
+        >userController.php
+
+    >models
+        connexion.php
+        gallerieManager.php
+        user.php
+        usermanager.php
+
+
+-----------------VIEWS
+---logIn.php et logUp.php
+Ce sont les formulaires d'inscription et de connexion. 
+Une requête GET est envoyé au controller pour effectuer le traitement au centre de l'application et en BDD ( voir userController.php)
+
+---galleries.php
+Permet d'exposer la gallerie avec les thêmes une proposition d'images et un ensemble de gallerie.
+Le site fonctionne ainsi : Il faut d'abord séléctionner un thême pour voir les galleries du thême. Il est possible d'ajouter un thême et une galerie en appuyant sur le bouton 
+adéquate (ils ne sont affichés seulement si la connexion a été effectuée). On peut ajouter une image en cliquant sur une image de la liste d'images proposées (idem, affiché 
+seulement si la connexion a été effectuée). De manière générale, la connexion est requise si l'on souhaite effectuer une modification dans l'application.
+
+Pour le fonctionnement des requêtes GET depuis l'application il faut se rapprocher du dossier modules et du fichier listFunction.js.
+ 
+Ce qu'il faut comprendre c'est que ce site établi un système de liste pour chacun de ses composants. C'est à dire que
+les thêmes sont dans une liste, les galeries aussi, les images tout autant. Afin d'afficher chaque liste il faut donc itérer sur 
+une variable qui contient tous les thêmes, une autre pour les galeries, et ainsi de suite. Ceci aurait pu être executé
+avec des variables de session, toutefois ce n'est pas trés pratiques si l'on veut ajouter de manière dynamique les images dans les galeries.
+Il faut donc passer par un système de requête asynchrone pour éviter le rechargement de la page. Ainsi pour afficher les éléments des listes 
+il faut passer par la modification du DOM. 
+Il faut donc pouvoir créer chaque élément de liste de manière dynamique. 
+Un objet représentant un élément de liste ainsi que ses enfants est donc créer dans un fichier js.
+Pour un élément liste de la liste des thèmes, il y a : themeList.js
+Pour un élément liste de la liste de galerie, il y a : galleryList.js
+Pour les images proposées à l'ajout, il y a ; freeImagesList.js
+Pour les images des galeries, il y a : imagesOfGalleryList.js
+(Je vous laisse vous rapprocher des commentaires et des fichiers pour comprendre un peu plus le fonctionnement)
+
+Ces objets sont utilisés depuis un fichier de fonction principal : listFunction.js. En voici les méthodes :
+
+**** setSelectedTheme() Permet de mettre à jour la valeur du thême séléctionné.
+
+**** setSelectedGallery() Idem mais pour la galerie séléctionnée.
+
+**** loadThemeAndImages() Déclenchée lors de l'arrivée sur la page, elle permet d'aller chercher la liste de thème, de galleries, ainsi que les images disponibles à l'ajout.
+                          Une requète asynchrone est effectuée au près du serveur pour effectuer la méthode start de la galerie au noveau du controleur : voir controller.php et galerieController.php.
+                          Une fois la réponse reçu, celle-ci est composée de trois tableaux : response.data.listOfTheme, response.data.listOfGallery et response.data.listOfImages (voir l-19 de gallerrieController.php)
+                          Pour chaque tableau, une boucle for permet d'itérer dessus. Et chaque ligne du tableau est ajoutée à  sa variable globale éponyme. Puis on créé les nouveaux éléments requis
+                          au niveau du DOM. Ainsi avec getRootThemeList on va récuperer l'arbre de l'élément à créer. On lui passe la ligne du tableau pour constituer les données en internes(voir themeList.js)
+                          Il en va de même pour getRootImagesList. Puis avec addToParent on crée de manière récursive le nouvel élément et ses enfants. Pour enfin être ajouté à son parent, qui est le parent
+                          de tous les éléments créés par la boucle for.
+                          Ce traitement n'est pas effectué sur listOfGallerie car la gallerie n'est affichée que lorsque qu'un click est repéré sur un élément de la liste de thèmes. Cela est fait plus tard dans le code
+                          voir setGallery( l-68)
+
+**** setGallery() Permet de découvrir la liste de galeries associées au thème séléctionné.
+
+**** setGalleryImages() Affiche les images correspondantes à la galerie séléctionnée. A ne pas confondre avec les images présentes sur la droite de la page.
+
+**** setBigImage(el) el : lien de l'image a afficher en gros.
+                     Permet d'afficher une image de la galerie en gros.
+
+**** addGallery()  Permet d'ajouter une galerie à la BDD. De la même manière que la méthode loadThemeAndImages() on fait une requète get en mettant le nom de la nouvelle galerie ainsi que le nom
+                    du thème séléctionné dans la requête get.
+                    Une réponse est retournée avec trois informations : 
+                    - succeed qui peut prendre soit false, soit true, qui indique si une erreur à eu lieu au niveau du formulaire ou lors de l'ajout.
+                    - panelInfo qui contient un tableau valeur color et une valeur text qui permet d'informer l'utilisateur du résultat de l'ajout. 
+                    voir la method addGallery à  l 72 -100 de gallerieController.php 
+                    - et tabRes qui est le nouvel ajout retourné pour l'ajouter ensuite au tableau de galerie : listOfGalerie
+                    Ce qui est pratique c'est que tabRes contient le nouvel objet JSON créé en bdd on peut donc utiliser son id pour l'ajouter au tableau et l'utiliser comme index.
+                    Puis l'ajout au DOM se fait de la même manière que pour setGalleryImages() si ce n'est que l'itération n'a pas lieu d'être ici.
+
+**** addTheme()  Permet d'ajouter une thème à la BDD. De la même manière que la méthode loadThemeAndImages() on fait une requète get en mettant le nom du nouveau thème.
+                 Fonctionne comme addGallery() (voir précédemment)
+
+**** addImageToGallery(el) el: nom (du type titre.jpg) de l'image
+                          Permet d'ajouter une image à la galerie. Lorsque celle-ci est ajoutée depuis la liste d'images proposées.        
+                          Fonctionne comme addGallery() (voir précédemment)
+
+**** emptyListThemeAndGallery(parent) parent : élément qui va se voir supprimer ses enfants
+                                Cette méthode permet de vider l'élément parent de ses enfants afin d'y insérer de nouveau.
+                                cela est utilsé lorsque qu'un clic est observé sur un élément de la liste de thème pour mettre à jour la liste de galerie. Elle est utilisés lorsqu'un changement
+                                de galerie est observée. Cela permet d'afficher les photos correspondantes à la galerie.
+
+**** turnItemActivated(el) el element qui va se voir ajouter la class isSelected pour indiquer viuellement quel élément de la liste est actif/.
+                          Est utilisé lorsqu'un thème est sélécionné et qu'une galerie l'est aussi. Cela défini également selectedTheme si la méthode est appelé par un élément de la liste de thème,
+                          et selectedGallery si c'est pas un élément de la liste de galerie.
+
+**** switchClassPanel(el, wantedState) el :élément qui va se voir changer de classe
+                                       wantedState: nouvelle classe à attribuer.
+                                       Cette méthode est utilisée lorsque l'utilisateur clique sur la croix face à "ajouter un thême". 
+                                       Cela rend visible ou invisible le formulaire. Il en va de même pour le formulaire d'ajout de galerie.
+
+**** raiseInfoPanel(tabInfo)  tabInfo : tableau contenant les informations à afficher après une modification en BDD déclenchée par l'utilisateur.
+                                        Permet de lever un panneau d'alert/information sur l'état des actions effectuées : ajout de thême, de galerie, d'images, etc
+                                        La valeur couleur permet de changer la couleur de fond du panel info (red si erreur, green sinon) et le texte associé.  
+ 
+**** addToParent(tree) tree : plan qui dessine l'arborescence du nouvel élément à créer. Voir l'objet racine dans les fichiers galleryList.js, themeList.js, freeImagesOfList.js et imagesOfGalleryList.js
+                              Pour le fonctionnement de cette méthode:
+                              Il faut aboder les choses avec récursivité. Il faut comprendre que cette méthode sert à créer un élément du DOM ainsi que ses enfants et les enfants des enfants, etc.
+                              Jusqu'à ce que le dernier enfant n'est plus d'enfant.
+                              Ainsi pour chaque niveau de l'arbre on va creer l'élément avec ses différents attributs et style. Pour appliquer un attribut ou style on regarde si il existe dans l'objet.
+                              On effectue la méthode si il y en a une à faire.
+                              Puis on regarde si il a des enfants et si c'est le cas on applique addToParent à tous ses enfants. sachant que addToParent retourne le nouvel élément créé, 
+                              il sera automatiquement ajouté à son noeud parent. Et on descend comme ça dans l'arbre de l'objet racine.
+                              Prenons l'exemple de l'objet racine de themeList.js
+                              la structure présente en premier un li à créer. Ce li possède trois attributs qui sont tag(pour le type d'élément à créer dans le dom, ici li),
+                              class qui permet d'attribuer les classes à l'élément et id, qui permet d'attibuer un id à l'élément. Ainsi avec les lignes 284 à 305 on 
+                              crée l'élément et défini ses attributs. Il y a également un quatrième attribut qui est child. C'est le tableau des enfants de l'élément courant.
+                              Ici nous allons descendre de l'élément qui a pour tag h3 et pour text test.title. 
+                              Ce nouvel élément h3 créé sera automatiquement ajouté au DOM de son parent avec appendChild (l-314).
+
+
+
+
+-----------------CONTROLLERS
+---controller.php
+Agit comme un aiguilleur. Il permet de rediriger la requête envoyée par la vue vers le bon controller, ici userController ou calendarController
+Il possède une propriété map joue le rôle de l'aiguilleur. Il s'agit d'un tableau indexé. Le premier niveau permet de savoir quel controller va être utilisé, le second
+est pour la méthode à appeler dans ce controller. Cela permet notemment une simplification des noms de controller et de méthode à passer en argument dans la requète GET envoyée par la vue.
+
+---userController.php
+Bien sûr, chaque méthodes dans le controller sont des méthodes qui vont appeler des méthodes du manager, car c'est le model qui gère l'échange avec la BDD.
+Ici deux méthodes : 
+
+**** doLogin() qui permet récuperer les informations du formulaire de connection
+Un premier test est effectué pour savoir si les champs ont bien été saisis.
+Si tel est le cas, on va récuperer le user via un méthode de userManager (voir getUserByPassAndEmail()). Si le retour est null alors le user n'existe pas et une erreur est 
+retournée et une redirection a lieu vers la page du formulaire. Sinon, un objet user est créé (voir user.php) puis la redirection est effectuée vers le calendrier.
+
+**** doLogup() effectue la même action que précédemment mais dans le cas où l'utilisateur s'inscrit. A l'inverse, si il existe déjà, une erreur est retournée. 
+Sinon l'inscription a bien lieu et la redirection se fait vers le calendrier.
+
+Ce qui n'est pas implémenté ici c'est qu'il n'est pas possible de changer certaines informations du compte de l'utilisateur.
+
+---gallerieController.php
+
+**** startGallerie() Permet d'effectuer les méthodes lors de la première connexion du site web. Elle execute trois méthodes : getListTheme(), getListGallery() et getListImages()
+     qu'elle retourne dans un tableau.
+
+**** getListTheme() Demande au model de retourner la liste des thêmes compris dans la BDD.
+**** getListGallery() Idem que précédemment mais pour les galeries.
+**** getListImages() Idem que précédemment mais pour les images proposées à l'ajout.
+
+**** addTheme() Demande au model d'ajouter un thême en BDD.
+**** addGallery() Demande au model d'ajouter une galerie en BDD.
+**** addImageToGalerie() Demande au model d'ajouter une image au tableau arrayOfImages d'une certaine galerie en BDD. 
+
+
+
+-----------------MODELS
+---connexion.php
+Permet la connexion à la BDD.
+**** doConnect() effectue la connexion. Une erreur est retourée si celle-ci ne se passe pas bien.
+**** getDb() retourne l'instance la BDD.
+
+---user.php
+Permet de déclarer un objet User.
+**** hydrate() Permet de distribuer les valeurs aux propriétés associées. Utilise pour ça les setter des propriétés.
+Il y aussi les getters et setter des propriétés de User.
+
+---userManager.php
+Classe importante du model car elle permet de gérer les échanges entre l'application et la base de donnée. Ce manager va servir a faire tous ces traitements pour tout ce 
+qui concerne le user. C'est à dire enregistrer qqn en bdd, vérifier sa présence, le supprimer (fonctionnalité non instaurée), le mettre à jour(fonctionnalité non instaurée)
+Ainsi : 
+**** getUserById() Permet de récuperer un utilisateur en utilisant son ID en BDD. Implémentée ici pour l'exercice mais non utilisée. Elle peut s'averer toutefois utile en cas 
+de prolongement de l'application.
+
+**** getUserByPassAndEmail() Permet de récuperer un utilisateur en utilisant son mot de passe et son pseudo. Utile pour les connexions.
+
+**** addUser() Permet d'ajouter un utilisateur en BDD. Celui-ci est alors créé en tant qu'objet au sein de l'application. Ici ce qui est risqué et le fait que les informations
+de l'utilisateur sont mises dans une variable session  afin que l'on puisse l'utiliser n'importe où sur l'application.
+
+**** createUser() Permet de créer l'utilisateur en tant qu'objet (voir User.php)
+
+**** testExistUser() Permet de savoir si un utilisateur existe déjà en base de donnée. L'utilisateur est retourné si c'est le cas, sinon null. Cette fonction 
+est utilisée par addUser et getUserByPassAndEmail
+
+---gallerieManager.php
+**** getThemeBydId(id) id : Id du thême.
+                       Permet de récuperer en base de données un thême en fonction de son ID.
+
+**** getGalleryById(id) Idem que précédemment mais pour une galerie.
+**** getImagesById(id)  Idem que précédemment mais pour une image.
+
+**** getListThemes() Permet de récuperer en BDD la liste des themes.
+**** getImagesPerThemes() Permet de récuperer le nombre d'images contenus dans le theme.
+**** getListGallery() Idem que précédemment mais pour les galeries.
+**** getListImages() Idem que précédemment mais pour les images.
+
+**** addTheme(titleTheme) titleTheme : titre du thême 
+                          Permet d'ajouter un thême à la BDD.
+**** addGallery(title, theme) title : titre de la nouvelle galerie.
+                              theme : nom du theme de la galerie.
+                              Permet d'ajouter une nouvelle galerie à la BDD. Le champs theme de la galerie se verra attribué un thême.
+**** addImageToGallery(image, gallerie) image : nom de l'image qui sera ajoutée au tableau arrayOfImages de la galerie (il s'ahit en réalité de son lien afin de la retrouver facilement dans le dossier image lorsqu'elle est utilisée)
+                                        gallerie : id de la galerie qui se vera modifiée. Le champs modified_at sera également modifié à la date courante.
+
+**** testExist(collection, filter) collection : collection à tester (theme ou galerie)
+                                   filter : filtre à utiliser pour savoir quoi chercher dans la bdd
+                                   Permet de savoir si un item existe en bdd (utilisé par addTheme, ou addGallerie)
