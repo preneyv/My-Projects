@@ -1,0 +1,12 @@
+#insc{
+		
+		width: 70%;
+		min-width: 300px;
+		min-height:500px;
+		height: auto;
+		border-radius: 10px;
+		padding: 1%;
+		background-color :#302d2d;
+		margin : 10% auto;
+    
+	}

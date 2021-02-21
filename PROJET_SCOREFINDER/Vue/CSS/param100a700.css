@@ -1,0 +1,45 @@
+
+
+  /*partie du panneau param*/
+  .panneauParam{
+         min-width : 100%;
+         width: 100%;
+         max-width: 400px;
+         min-height : 200px;
+         height: auto;
+         max-height: 500px;
+         margin: 0 ;
+         padding: 0;
+         background-color: #302d2d;
+         display : none;
+         position:fixed;
+         z-index: 3;
+  }
+
+  #partieDroite_page{
+    position:  absolute;
+    top : 0;
+    right:0;
+    min-width: 25%;
+    width : 30%;
+  }
+
+  .rslides{
+    display:none;
+  }
+  #partieGauche_page{
+    width : 100%;
+  }
+
+  #partie_gauche_barre_trie{
+    display: none;
+  }
+
+
+
+  #partie_droite_barre_trie{
+    
+    float:left;
+    display: inline;
+    background-color: #302d2d;
+  }

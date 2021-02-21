@@ -1,0 +1,20 @@
+#insc{
+		
+		width: 70%;
+		min-width: 100px;
+		min-height:200px;
+		height: auto;
+		border-radius: 10px;
+		padding: 1%;
+		background-color :#302d2d;
+		margin : 10% auto;
+    
+	}
+	
+#msgErreur{
+		font-family: helvetica, sans-serif;
+		margin-top: 10px;
+		font-size: 25px;
+		color : white;
+		text-align: center;
+}
